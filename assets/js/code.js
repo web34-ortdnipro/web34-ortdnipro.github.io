@@ -17,7 +17,8 @@
                 repositoriesList: [],
                 groupTitle: 'WEB34',
                 groupFullTitle: 'WEB34@ORTDNIPRO',
-                totalLessonQuantity: 24
+                totalLessonQuantity: 24,
+                showPPTX: false
             }
         },
 
