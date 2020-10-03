@@ -1,5 +1,5 @@
     const GITHUB_USER 	= "web34-ortdnipro";
-    const GITHUB_TOKEN 	= atob("MjNhMGQwOTZmYjIzYzI2OTI1NzYxMDUwMGI5NTBmODI4ZWZiODRmZA==");
+    const GITHUB_TOKEN 	= atob("Y2FkOWNmYTBhNDBkYzcwNzU4NThkNTM1ZDVjNGNkMjcyMmJhNDI0Yg==");
 
     const REPS_URL = `https://api.github.com/users/${GITHUB_USER}/repos`;
         
