@@ -31,8 +31,6 @@
             
             answer = await answer.json();
 
-            console.log(answer);
-
             this.repositoriesList = answer.filter( 
                 item => item.name.trim().toLowerCase().startsWith('lesson')
             ).map(item => ({
