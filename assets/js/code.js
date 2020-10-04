@@ -12,13 +12,37 @@
             }
         },
 
+        computed: {
+            searchResult() {
+
+                let search = this.searchText.trim().toLowerCase();
+
+                if(!search.length) return this.repositoriesList;
+                
+                return this
+                        .repositoriesList
+                            .filter(
+                                item => 
+                                    item.description.toLowerCase().includes(search)
+                                    || 
+                                    item.name.toLowerCase().includes(search)
+                            );
+                
+            },
+
+            isNothingFound() {
+                return !this.searchResult.length;
+            }
+        },
+
         data() {
             return {
                 repositoriesList: [],
                 groupTitle: 'WEB34',
                 groupFullTitle: 'WEB34@ORTDNIPRO',
                 totalLessonQuantity: 24,
-                showPPTX: false
+                showPPTX: false, 
+                searchText: ''
             }
         },
 

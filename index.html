@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="site-logo">
-						<h2>WEB34@ORTDNIPRO</h2>
+						<h2>{{groupFullTitle}}</h2>
 						<p>Курс 
 							<a target='_blank' href='https://ort.dp.ua/web/'>
 							Начало веб-разработки и программирования</a>
@@ -83,10 +83,15 @@
 			<div class="row">
 				<div class="col-xl-8 offset-xl-2">
 					<div class="section-title">
-						<h2>WEB34 Lessons List:</h2>
+						<h2 class='mb-4'>{{groupTitle}} Lessons List:</h2>
+						<div class='d-flex align-items-center search-block'>
+							<i class="fa fa-search fa-2x" aria-hidden="true" style='color:#bbb;'></i>
+							&nbsp;
+							<input placeholder="Search..." v-model='searchText' id='search-text'>
+						</div>
 					</div>
 					<ul class="resume-list">
-						<li v-for='item in repositoriesList'>
+						<li v-for='item in searchResult'>
 							<h2>
 								<a title="Open On GitHub" target='_blank' :href='item.url' style='color:black'>
 									{{item.title}}
@@ -104,6 +109,10 @@
 								</a>
 							</div>
 							
+						</li>
+						<li v-if='isNothingFound' class='mb-5'>
+							<h3 class='mb-5 text-muted' class=''>Ничего не найдено...</h3>
+							<p>Попробуйте другой поисковый запрос...</p>
 						</li>
 						
 					</ul>
