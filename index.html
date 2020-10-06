@@ -94,18 +94,18 @@
 					<ul class="resume-list">
 						<li v-for='item in searchResult'>
 							<h2>
-								<a title="Open On GitHub" target='_blank' :href='item.url' style='color:black'>
-									{{item.title}}
-								</a> 
+								
+								{{item.title}}
+								 
 								<span class='total-quantity-label'> / {{totalLessonQuantity}}</span>
 							</h2>
 							<p>{{item.description}}</p>
 							<div class='linkbox my-3'>
-								<a target='_blank' :href='item.pdfLink' style='color:black'>
+								<a  :href='item.pdfLink' style='color:black'>
 									<i title="Download PDF From GitHub" class="fa fa-file-pdf-o fa-3x"></i>
 								</a>
 							
-								<a target='_blank' v-if='showPPTX' :href='item.pptxLink' style='color:black'>
+								<a  v-if='showPPTX' :href='item.pptxLink' style='color:black'>
 									<i title="Download PPTX From GitHub" class="fa fa-file-powerpoint-o fa-3x"></i>
 								</a>
 							</div>
@@ -122,7 +122,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- Lessons section end -->
 	<!-- Lessons section end -->
 
 	<!-- Footer section start -->
