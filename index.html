@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>WEB34@ORTDNIPRO</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="WEB34@ORTDNIPRO">
-	<meta name="keywords" content="Учебные материалы для группы WEB34 образовательного центра ORT DNIPRO">
+	
+	<!-- Start Configuration Data -->
+
+	<title>WEB34@ORTDNIPRO</title>
+
+	<meta 
+		data-total-lesson-quantity='24'
+		data-show-git-hub-link-after='10'
+		data-show-certificates-data-button='false'
+		data-certificates-data-link='#'
+		data-show-course-review-button='false'
+		data-show-course-review-after='2020-12-26T19:55:00Z'
+		data-course-review-link='https://bit.ly/2FnP3qQ'
+		data-git-hub-account='web34-ortdnipro'
+		data-git-hub-token='Y2FkOWNmYTBhNDBkYzcwNzU4NThkNTM1ZDVjNGNkMjcyMmJhNDI0Yg=='
+		data-telegram-group-link='https://t.me/joinchat/GWql0lJPXVDzODuxML61VQ'
+		data-course-link-on-main-site='https://ortdnipro.org/web/'
+	>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="description" content="Учебные материалы для группы WEB34 образовательного центра ORT DNIPRO">
+
+	<meta property="og:description" content="Учебные материалы для группы WEB34 образовательного центра ORT DNIPRO" />
+
+	<meta property="og:site_name" content="ORT DNIPRO | Международный образовательный центр"/>
+		
+	<meta property="og:url" content="https://web34.ortdnipro.org/" />
+	
+	<!-- End Configuration Data -->
+
+	<meta property="og:image" content="https://ortdnipro.org/media/web-preview-image.png" />
+	<meta name="twitter:card" content="summary_large_image"/>
+	
 	<!-- Favicon -->   
 	<link href="./assets/img/favicon.png" rel="shortcut icon"/>
-
+	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="./assets/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="./assets/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="./assets/css/fa5.css"/>
 	<link rel="stylesheet" href="./assets/css/flaticon.css"/>
 	<link rel="stylesheet" href="./assets/css/owl.carousel.css"/>
 	<link rel="stylesheet" href="./assets/css/magnific-popup.css"/>
 	<link rel="stylesheet" href="./assets/css/style.css"/>
-	<link rel="stylesheet" href="./assets/css/custom.css"/>
-
-
-	<meta property="og:site_name" content="ORT DNIPRO | Международный образовательный центр"/>
-	<meta property="og:title" content="WEB34@ORTDNIPRO" />
-	<meta property="og:description" content="Учебные материалы для группы WEB34 образовательного центра ORT DNIPRO" />
-	<meta property="og:url" content="https://web34.ortdnipro.org/" />
-	<meta property="og:image" content="https://web34.ortdnipro.org/assets/img/logo-glow.png" />
-	<meta name="twitter:card" content="summary_large_image"/>
+	<link rel="stylesheet" href="./assets/css/custom.css?version=3"/>
 
 </head>
 <body id='app-container'>
@@ -37,14 +59,24 @@
 	<header class="header-section">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-lg-4">
 					<div class="site-logo">
 						<h2>{{groupFullTitle}}</h2>
 						<p>Курс 
-							<a target='_blank' href='https://ort.dp.ua/web/'>
+							<a target='_blank' :href='courseLinkOnMainSite'>
 							Начало веб-разработки и программирования</a>
 						</p>
 					</div>
+				</div>
+				<div class="col-lg-8 text-lg-right header-buttons">
+					<a v-if='showCertificatesDataButton' :href="certificatesDataLink" class="site-btn d-inline-flex align-items-center">
+						<i class="fas fa-2x fa-graduation-cap"></i>
+						&nbsp;Анкета для Сертификатов
+					</a>
+					<a v-if='isShowCourseReviewButton' :href="courseReviewLink" class="site-btn bg-primary text-white d-inline-flex align-items-center">
+						<i class="fas fa-2x fa-balance-scale"></i>
+						&nbsp;Ваше мнение о курсе
+					</a>
 				</div>
 				
 			</div>
@@ -59,11 +91,11 @@
 				<div class="col-xl-10 offset-xl-1">
 					<div class="social-link-warp">
 						<div class="social-links">
-							<a target='_blank' class='mx-5' href="https://t.me/joinchat/GWql0lJPXVDzODuxML61VQ">
-								<i class="scale-icon fa fa-telegram"></i>
+							<a target='_blank' class='mx-5' :href="telegramGroupLink">
+								<i class="scale-icon fa-2x fab fa-telegram"></i>
 							</a>
-							<a target='_blank' class='mx-5' href="https://github.com/web34-ortdnipro">
-								<i class="scale-icon scale-icon-more fa fa-github"></i>
+							<a target='_blank' class='mx-5' :href="`https://github.com/${gitHubAccount}`">
+								<i class="scale-icon fa-2x fab fa-github"></i>
 							</a>
 						</div>
 						<h2 class="hidden-md hidden-sm">Telegram / GitHub</h2>
@@ -82,7 +114,7 @@
 					<div class="section-title">
 						<h2 class='mb-5'>{{groupTitle}} Lessons List:</h2>
 						<div class='d-flex align-items-center search-block my-4'>
-							<i class="fa fa-search fa-2x text-muted"></i>
+							<i class="fas fa-search fa-2x text-muted"></i>
 							&nbsp;
 							<input placeholder="Search..." v-model='searchText' id='search-text'>
 							
@@ -94,23 +126,28 @@
 					<ul class="resume-list">
 						<li v-for='item in searchResult'>
 							<h2>
-								
 								{{item.title}}
-								 
 								<span class='total-quantity-label'> / {{totalLessonQuantity}}</span>
 							</h2>
 							<p>{{item.description}}</p>
 							<div class='linkbox my-3'>
-								<a  :href='item.pdfLink' style='color:black'>
-									<i title="Download PDF From GitHub" class="fa fa-file-pdf-o fa-3x"></i>
+								<input v-if='item.lessonNumber >= showGitHubLinkAfter' style='min-width: 250px;' class='ml-2' type='text' readonly :value='item.url'>
+								
+								<i v-if='item.lessonNumber >= showGitHubLinkAfter'  title="Copy To Clipboard" @click='copyToClipboard' class="fas fa-paste fa-3x"></i>
+
+								<a v-if='item.lessonNumber >= showGitHubLinkAfter'  target='_blank' :href='item.url' style='color:black'>
+									<i title="Open On GitHub"  class="fa-3x fas fa-code-branch"></i>
+								</a>
+
+								<a target='_blank' :href='item.pdfLink' style='color:black'>
+									<i title="Download PDF From GitHub" class="far fa-file-pdf fa-3x"></i>
 								</a>
 							
-								<a  v-if='showPPTX' :href='item.pptxLink' style='color:black'>
-									<i title="Download PPTX From GitHub" class="fa fa-file-powerpoint-o fa-3x"></i>
+								<a target='_blank' v-if='showPPTX' :href='item.pptxLink' style='color:black'>
+									<i title="Download PPTX From GitHub" class="far fa-file-powerpoint fa-3x"></i>
 								</a>
 							</div>
-							
-							
+								
 						</li>
 						<li v-if='isNothingFound' class='mb-5'>
 							<h3 class='mb-5 text-muted' class=''>Ничего не найдено...</h3>
@@ -128,7 +165,7 @@
 	<footer class="footer-section">
 		<div class="container text-center">
 			<div class="copyright">
-				<a target="_blank" href='https://ort.dp.ua/web/'>
+				<a target="_blank" :href='courseLinkOnMainSite'>
 					<u>ORT DNIPRO</u>
 				</a> 
 				<span @click='showPPTX = !showPPTX'>
@@ -155,8 +192,7 @@
 	<script src="./assets/js/magnific-popup.min.js"></script>
 	<script src="./assets/js/circle-progress.min.js"></script>
 	<script src="./assets/js/main.js"></script>
-	<!--<script src="https://unpkg.com/vue@next"></script>-->
 	<script src="./assets/js/vue.global.prod.js"></script>
-	<script src="./assets/js/code.js"></script>
+	<script src="./assets/js/code.js?version=3"></script>
 </body>
 </html>
